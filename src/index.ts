@@ -3,9 +3,13 @@ import indexRouter from './routes/index';
 import categoriesRoutes from './routes/categories';
 import authRoutes from './routes/auth';
 import mongoose from 'mongoose';
+import dotenv from "dotenv";
+
+dotenv.config();
+
 
 const app: Application = express();
-const port: number = 3000;
+const port: any = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
@@ -16,7 +20,8 @@ app.use('/api/auth', authRoutes);
 
 // connect to mongodb database
 mongoose.set("strictQuery", false);
-mongoose.connect('mongodb://localhost:27017/classified')
+const connectionString = process.env.MONGODB_URI || "mongodb://localhost:27017/your-db-name"
+mongoose.connect(connectionString)
     .then(r => {
         console.log('Connected to MongoDB :', r.connection.name);
     }).catch(err => {

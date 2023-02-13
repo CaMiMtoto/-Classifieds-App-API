@@ -38,7 +38,7 @@ router.post("/", auth_1.verifyToken, (req, res) => __awaiter(void 0, void 0, voi
 router.get("/:id", auth_1.verifyToken, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         let category = yield Category_1.default.findById(req.params.id)
-            .populate('user', 'name');
+            .populate('user', '_id name');
         res.json(category)
             .status(200);
     }
