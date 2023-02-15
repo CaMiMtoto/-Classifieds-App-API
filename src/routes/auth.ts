@@ -65,7 +65,6 @@ router.post('/login', async (req: Request, res: Response) => {
 // Verify the JWT
 export async function verifyToken(req: any, res: Response, next: Function) {
     const bearerHeader = req.headers['authorization'];
-
     if (typeof bearerHeader !== 'undefined') {
         const bearer = bearerHeader.split(' ');
         req.token = bearer[1];
