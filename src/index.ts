@@ -33,7 +33,7 @@ mongoose.connect(connectionString)
     console.log('Error connecting to MongoDB ', err);
 });
 
-app.listen(port, "192.168.162.112", () => {
+app.listen(port, /*"192.168.162.112", */() => {
     console.log(`Example app listening at http://localhost:${port}`);
 });
 
