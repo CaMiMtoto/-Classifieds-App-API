@@ -2,9 +2,12 @@ import express, {Request, Response} from "express";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import User from "../models/User";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const router = express.Router();
-let secretOrPublicKey = 'secretkey';
+let secretOrPublicKey = process.env.JWT_SECRET || "YourSecretKey";
 // Register a new user
 router.post('/register', async (req: Request, res: Response) => {
     // Hash the password
