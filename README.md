@@ -1,6 +1,9 @@
 # Classified App - API
 
-This is the API for the Classified App. It is built using Node.js, Express, and MongoDB.
+This is the API for the Classified App. It is built using Node.js, Express Using typescript, and MongoDB . It is a
+RESTful API that
+allows clients to create, read, update, and delete products and categories.
+clients must be authenticated to access the API.
 
 ## Getting Started
 
@@ -38,9 +41,39 @@ Start the server.
 ```
 npm run build
 ```
+
 ```
 npm start
 ```
+
+## Endpoints
+
+### Authentication
+
+| Method | Endpoint           | Description         |
+|--------|--------------------|---------------------|
+| POST   | /api/auth/register | Register a new user |
+| POST   | /api/auth/login    | Login a user        |
+
+### Products
+
+| Method | Endpoint          | Description          |
+|--------|-------------------|----------------------|
+| GET    | /api/products     | Get all products     |
+| GET    | /api/products/:id | Get a single product |
+| POST   | /api/products     | Create a product     |
+| PUT    | /api/products/:id | Update a product     |
+| DELETE | /api/products/:id | Delete a product     |
+
+### Categories
+
+| Method | Endpoint            | Description           |
+|--------|---------------------|-----------------------|
+| GET    | /api/categories     | Get all categories    |
+| GET    | /api/categories/:id | Get a single category |
+| POST   | /api/categories     | Create a category     |
+| PUT    | /api/categories/:id | Update a category     |
+| DELETE | /api/categories/:id | Delete a category     |
 
 ## Built With
 
@@ -51,6 +84,9 @@ npm start
 * [JWT](https://jwt.io/) - Authentication
 * [Bcrypt](https://www.npmjs.com/package/bcrypt) - Password hashing
 * [Multer](https://www.npmjs.com/package/multer) - File upload
-* [Nodemailer](https://nodemailer.com/about/) - Email sending
-* [Passport](http://www.passportjs.org/) - Authentication
+* [Typescript](https://www.typescriptlang.org/) - JavaScript superset for type checking and static typing
+
+## Deployment
+
+This app is deployed on Heroku. You can access it [https://classified.cami.ink](https://classified.cami.ink).
 
