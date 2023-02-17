@@ -17,8 +17,10 @@ const express_1 = __importDefault(require("express"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const User_1 = __importDefault(require("../models/User"));
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config();
 const router = express_1.default.Router();
-let secretOrPublicKey = 'secretkey';
+let secretOrPublicKey = process.env.JWT_SECRET || "YourSecretKey";
 // Register a new user
 router.post('/register', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     // Hash the password

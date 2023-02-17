@@ -4,10 +4,11 @@ import {verifyToken} from "./auth";
 
 const router = express.Router();
 
-router.get("/", verifyToken, async (req: Request, res: Response) => {
+router.get("/", verifyToken, async (req: any, res: Response) => {
     // populate the user field in the category with only _id and name
-    let categories = await Category.find()
-        .populate("user", "_id name");
+    let categories = await Category.find({
+        user: req.user['_id']
+    }).populate("user", "_id name");
     res.json(categories)
         .status(200);
 });

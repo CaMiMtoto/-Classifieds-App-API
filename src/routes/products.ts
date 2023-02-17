@@ -14,9 +14,10 @@ router.get("/", verifyToken, async (req: any, res: Response) => {
     let products;
     if (categoryId) {
         products = await Product
-            .find({ category: categoryId ,  user: req.user['_id']})
+            .find({category: categoryId, user: req.user['_id']})
             .populate("category")
-            .sort({name: 1});
+            .sort({name: 1})
+            .limit(10);
     } else {
         products = await Product
             .find({user: req.user['_id']})

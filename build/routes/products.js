@@ -50,7 +50,8 @@ router.get("/", auth_1.verifyToken, (req, res) => __awaiter(void 0, void 0, void
         products = yield Product_1.default
             .find({ category: categoryId, user: req.user['_id'] })
             .populate("category")
-            .sort({ name: 1 });
+            .sort({ name: 1 })
+            .limit(10);
     }
     else {
         products = yield Product_1.default

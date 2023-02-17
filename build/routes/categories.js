@@ -18,8 +18,9 @@ const auth_1 = require("./auth");
 const router = express_1.default.Router();
 router.get("/", auth_1.verifyToken, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     // populate the user field in the category with only _id and name
-    let categories = yield Category_1.default.find()
-        .populate("user", "_id name");
+    let categories = yield Category_1.default.find({
+        user: req.user['_id']
+    }).populate("user", "_id name");
     res.json(categories)
         .status(200);
 }));
