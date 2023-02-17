@@ -17,10 +17,12 @@ const Category_1 = __importDefault(require("../models/Category"));
 const auth_1 = require("./auth");
 const router = express_1.default.Router();
 router.get("/", auth_1.verifyToken, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    // populate the user field in the category with only _id and name
-    let categories = yield Category_1.default.find({
-        user: req.user['_id']
-    }).populate("user", "_id name");
+    // find all categories where user equal to id or is null or undefined
+    let id = req.user['_id'];
+    let categories = yield Category_1.default
+        .find({ $or: [{ user: id }, { user: null }, { user: undefined }] })
+        .populate('user', '_id name')
+        .sort({ name: 1 });
     res.json(categories)
         .status(200);
 }));

@@ -5,10 +5,13 @@ import {verifyToken} from "./auth";
 const router = express.Router();
 
 router.get("/", verifyToken, async (req: any, res: Response) => {
-    // populate the user field in the category with only _id and name
-    let categories = await Category.find({
-        user: req.user['_id']
-    }).populate("user", "_id name");
+    // find all categories where user equal to id or is null or undefined
+    let id = req.user['_id'];
+    let categories = await Category
+        .find({$or: [{user: id}, {user: null}, {user: undefined}]})
+        .populate('user', '_id name')
+        .sort({name: 1});
+
     res.json(categories)
         .status(200);
 });
